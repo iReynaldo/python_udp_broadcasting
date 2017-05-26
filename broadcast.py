@@ -26,7 +26,7 @@ class Receiver:
         # Set socket up for receiving (and make the port sharable)
         self.sock_it.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # My modification to allow the bind address to be shared
         self.sock_it.bind( ('<broadcast>', port) )
-        self.sock_it.setblocking(0)  # 0 means "do not block"
+
 
         self.port = port
         self.buffer_size = buffer_size  # bytes
@@ -34,7 +34,10 @@ class Receiver:
     def listen(self, timeout=None):
         """ Listens until timeout, which is float in seconds """
         if timeout:
+            self.sock_it.setblocking(0)  # 0 means "do not block"
             self.sock_it.settimeout(timeout)
+        else:
+            self.sock_it.setblocking(1)  # blocking mode
         try:
             msg = self.sock_it.recv(self.buffer_size)
             return msg if msg else None

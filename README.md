@@ -4,6 +4,8 @@ Python UDP Broadcasting
 This is just an quick example of UDP broadcasting in Python.
 The setup is 1 Broadcaster to Many Listeners.
 
+![example_run](readme_imgs/example_run.png)
+
 ## How to run
 
 1. Start a couple of terminals (at least 2).
